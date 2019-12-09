@@ -5,7 +5,7 @@ CREATE OR REPLACE WRAPPER JDBC bv1_employees
     RELATIONNAME='EMPLOYEES' 
     OUTPUTSCHEMA (
         employee_id = 'EMPLOYEE_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
-        first_name1 = 'FIRST_NAME1' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        first_name1 = 'FIRST_NAME1' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
         last_name = 'LAST_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='25', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
         email = 'EMAIL' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='25', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
         phone_number = 'PHONE_NUMBER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
@@ -43,7 +43,7 @@ CREATE OR REPLACE TABLE bv1_employees I18N us_pst (
         manager_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '6'), 
         department_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '4')
     )
-    CONSTRAINT 'EMP_EMP_ID_PK' PRIMARY KEY ( 'employee_id' )
+    PRIMARY KEY ( 'employee_id' , 'first_name1' )
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD bv1_employees(
