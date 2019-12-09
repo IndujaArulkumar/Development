@@ -1,0 +1,47 @@
+﻿CREATE OR REPLACE WRAPPER XML bv_test_copy
+    DATASOURCENAME=ds_test_copy
+    TUPLEROOT '/rss/channel/item'
+    OUTPUTSCHEMA (rss = 'rss' : REGISTER OF (
+        version = '#version' : 'java.lang.Float',
+        title_0 = 'rss.channel.title' : 'java.lang.String',
+        link_0 = 'rss.channel.link' : 'java.lang.String',
+        description_0 = 'rss.channel.description' : 'java.lang.String',
+        title = 'rss.channel.item.title' : 'java.lang.Short',
+        description = 'rss.channel.item.description' : 'java.lang.String',
+        link = 'rss.channel.item.link' : 'java.lang.String',
+        author = 'rss.channel.item.author' : 'java.lang.String',
+        pubdate = 'rss.channel.item.pubDate' : 'java.lang.String'
+    )
+    );
+
+CREATE OR REPLACE TABLE bv_test_copy I18N us_pst (
+        version:float, 
+        title_0:text, 
+        link_0:text, 
+        description_0:text, 
+        title:int, 
+        description:text, 
+        link:text, 
+        author:text, 
+        pubdate:text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_test_copy(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD version NOS ZERO ()
+             ADD title_0 NOS ZERO ()
+             ADD link_0 NOS ZERO ()
+             ADD description_0 NOS ZERO ()
+             ADD title NOS ZERO ()
+             ADD description NOS ZERO ()
+             ADD link NOS ZERO ()
+             ADD author NOS ZERO ()
+             ADD pubdate NOS ZERO ()
+        )
+        OUTPUTLIST (author, description, description_0, link, link_0, pubdate, title, title_0, version
+        )
+        WRAPPER (xml bv_test_copy)
+    );
+

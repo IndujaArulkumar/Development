@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE XML ds_test_copy
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.vcs.datasources.xml.ds_test_copy.ROUTE.HTTP.URL}'
+    AUTHENTICATION BASIC ( 
+      USER '${databases.vcs.datasources.xml.ds_test_copy.ROUTE.HTTP.USER}'
+      PASSWORD '${databases.vcs.datasources.xml.ds_test_copy.ROUTE.HTTP.PASSWORD}' ${databases.vcs.datasources.xml.ds_test_copy.ROUTE.HTTP.PASSWORD.ENCRYPTED} )
+    PROXY OFF;
+
