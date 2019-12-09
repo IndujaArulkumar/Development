@@ -15,8 +15,8 @@ CREATE OR REPLACE WRAPPER CUSTOM bv_log
         out0 = 'out0' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
         out1 = 'out1' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
         out2 = 'out2' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
-        source = 'out3' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
-        extracteddate_0 = 'Extracted Date' : 'java.time.LocalDate' (OPT) (sourcetypeid='91')  NOT NULL NOT SORTABLE NOT UPDATEABLE,
+        source1 = 'out3' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        start_date = 'Extracted Date' : 'java.time.LocalDate' (OPT) (sourcetypeid='91')  NOT NULL NOT SORTABLE NOT UPDATEABLE,
         searchstartdate_0 = 'Search Start Date' : 'java.time.LocalDate' (OBL) (sourcetypeid='91')  NOT NULL NOT SORTABLE NOT UPDATEABLE,
         searchenddate_0 = 'Search End Date' : 'java.time.LocalDate' (OPT) (sourcetypeid='91')  NOT SORTABLE NOT UPDATEABLE
     );
@@ -25,12 +25,12 @@ CREATE OR REPLACE TABLE bv_log I18N us_pst (
         out0:text (sourcetypeid = '12'), 
         out1:text (sourcetypeid = '12'), 
         out2:text (sourcetypeid = '12'), 
-        source:text (sourcetypeid = '12'), 
-        extracteddate_0:localdate (sourcetypeid = '91'), 
+        source1:text (sourcetypeid = '12'), 
+        start_date:localdate (sourcetypeid = '91'), 
         searchstartdate_0:localdate (sourcetypeid = '91'), 
         searchenddate_0:localdate (sourcetypeid = '91')
     )
-    PRIMARY KEY ( 'out2' )
+    PRIMARY KEY ( 'source1' )
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD bv_log(
@@ -39,12 +39,12 @@ CREATE OR REPLACE TABLE bv_log I18N us_pst (
              ADD out0 NOS ZERO ()
              ADD out1 NOS ZERO ()
              ADD out2 NOS ZERO ()
-             ADD source NOS ZERO ()
-             ADD extracteddate_0 (any) OPT ANY
+             ADD source1 NOS ZERO ()
+             ADD start_date (any) OPT ANY
              ADD searchstartdate_0 (=) OBL ONE
              ADD searchenddate_0 (any) OPT ANY
         )
-        OUTPUTLIST (extracteddate_0, out0, out1, out2, source, searchenddate_0, searchstartdate_0
+        OUTPUTLIST (start_date, out0, out1, out2, source1, searchenddate_0, searchstartdate_0
         )
         WRAPPER (custom bv_log)
     );
