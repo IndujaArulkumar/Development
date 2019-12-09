@@ -4,7 +4,7 @@
     OUTPUTSCHEMA (rss = 'rss' : REGISTER OF (
         version = '#version' : 'java.lang.Float',
         title_0 = 'rss.channel.title' : 'java.lang.String',
-        link_0 = 'rss.channel.link' : 'java.lang.String',
+        link_1 = 'rss.channel.link' : 'java.lang.String',
         description_0 = 'rss.channel.description' : 'java.lang.String',
         title = 'rss.channel.item.title' : 'java.lang.Short',
         description = 'rss.channel.item.description' : 'java.lang.String',
@@ -17,7 +17,7 @@
 CREATE OR REPLACE TABLE bv_test_copy I18N us_pst (
         version:float, 
         title_0:text, 
-        link_0:text, 
+        link_1:text, 
         description_0:text, 
         title:int, 
         description:text, 
@@ -25,6 +25,7 @@ CREATE OR REPLACE TABLE bv_test_copy I18N us_pst (
         author:text, 
         pubdate:text
     )
+    PRIMARY KEY ( 'link_1' )
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD bv_test_copy(
@@ -32,7 +33,7 @@ CREATE OR REPLACE TABLE bv_test_copy I18N us_pst (
         CONSTRAINTS (
              ADD version NOS ZERO ()
              ADD title_0 NOS ZERO ()
-             ADD link_0 NOS ZERO ()
+             ADD link_1 NOS ZERO ()
              ADD description_0 NOS ZERO ()
              ADD title NOS ZERO ()
              ADD description NOS ZERO ()
@@ -40,7 +41,7 @@ CREATE OR REPLACE TABLE bv_test_copy I18N us_pst (
              ADD author NOS ZERO ()
              ADD pubdate NOS ZERO ()
         )
-        OUTPUTLIST (author, description, description_0, link, link_0, pubdate, title, title_0, version
+        OUTPUTLIST (author, description, description_0, link, link_1, pubdate, title, title_0, version
         )
         WRAPPER (xml bv_test_copy)
     );
