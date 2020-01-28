@@ -1,5 +1,0 @@
-﻿CREATE OR REPLACE VIEW p_bv_log AS SELECT bv_log.out0 AS out0, bv_log.out1 AS out1, bv_log.out2 AS out2, bv_log.source1 AS source1, bv_log.start_date AS start_date, bv_log.searchstartdate_0 AS searchstartdate_0, bv_log.searchenddate_0 AS searchenddate_0 FROM bv_log;
-
-ALTER VIEW p_bv_log
- LAYOUT (bv_log = [20, 20, 242, 166]);
-
